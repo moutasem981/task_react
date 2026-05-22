@@ -1,0 +1,11 @@
+.card{
+    max-width:calc(100% / 5);
+}
+
+@media screen and (max-width: 1100px) {
+
+.card{
+    max-width:calc(100% / 3);
+} 
+    
+}

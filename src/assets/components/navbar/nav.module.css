@@ -1,0 +1,11 @@
+.navbar{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    border: 2px solid black;
+    
+}
+.navbar a{
+    color: black;
+    padding: 10px;
+}
