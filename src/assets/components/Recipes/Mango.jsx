@@ -1,30 +1,11 @@
-import axios from 'axios';
 import style from './recipes.module.css';
-import React, { useEffect, useState } from 'react'
 import Posts from './posts/Posts';
 import Isloder from '../isloder/Isloder';
+import useFetch from '../../hooks/useFetch';
 
 export default function Mango() {
- const [mango,setmango] = useState([]);
- const [isloder , setisloder] = useState(true);
-  const [error , seterror] = useState('');
+  const {data,isloder,error} = useFetch("https://forkify-api.jonas.io/api/v2/recipes?search=mango");
 
- const getmango = async ()=>{
-try{
-  const response = await axios.get("https://forkify-api.jonas.io/api/v2/recipes?search=mango");
-  setmango(response.data.data.recipes);
-  }
-  catch(err){
-    seterror('error to load data');
-   }
-   finally{
-    setisloder(false);
-   }
- }
-
- useEffect(()=>{
-     getmango()
- }, [])
 
  if(isloder){
     return <Isloder />
@@ -36,7 +17,7 @@ try{
   <h1>Recipes</h1>
   <div className={style.cards}>
    {
-    mango.map((mg)=>
+    data.map((mg)=>
       <Posts image_url={mg.image_url} publisher={mg.publisher} title={mg.title} id={mg.id}/>
     )
    }
